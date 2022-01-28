@@ -1,6 +1,6 @@
 package com.example.mymovyapp.screen.home
 
-import android.util.Log
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,10 +19,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.mymovyapp.MovieRow
+import com.example.mymovyapp.model.Movie
+import com.example.mymovyapp.model.getMovies
 import com.example.mymovyapp.navigation.MovieScreens
+import com.example.mymovyapp.widgets.MovieRow
 
 
+@ExperimentalAnimationApi
 @Composable
 fun HomeScreen(navController: NavController){
 
@@ -43,21 +46,10 @@ fun HomeScreen(navController: NavController){
     }
 }
 
+@ExperimentalAnimationApi
 @Composable
 fun MainContent(navController: NavController,
-    movieList:List<String> = listOf(
-        "Avatar",
-        "300",
-        "Harry Potter",
-        "Life",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-    )
+    movieList:List<Movie> = getMovies()
 ){
     Surface(
         modifier = Modifier
@@ -68,7 +60,7 @@ fun MainContent(navController: NavController,
         shape = RoundedCornerShape(corner = CornerSize(12.dp))
     ) {
         Column() {
-            Text(text = "hello movy app")
+            Text(text = "my movie app")
 
             LazyColumn {
                 items(items = movieList){

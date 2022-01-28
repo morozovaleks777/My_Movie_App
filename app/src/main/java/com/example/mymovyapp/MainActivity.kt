@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -23,10 +24,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.mymovyapp.model.Movie
 import com.example.mymovyapp.navigation.MovieNavigation
 import com.example.mymovyapp.ui.theme.MyMovyAppTheme
 
 class MainActivity : ComponentActivity() {
+    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -49,79 +52,39 @@ fun MyApp(
 
     }
 }
-
+//
 //@Composable
-//fun MainContent(
-//    movieList:List<String> = listOf(
-//        "Avatar",
-//        "300",
-//        "Harry Potter",
-//         "Life",
-//        "",
-//        "",
-//        "",
-//        "",
-//        "",
-//        "",
-//        "",
-//    )
-//){
-//   Surface(
-//       modifier = Modifier
-//           .padding(5.dp)
-//           .fillMaxWidth()
-//           .fillMaxHeight(),
-//       color = Color.LightGray,
-//       shape = RoundedCornerShape(corner = CornerSize(12.dp))
-//   ) {
-//       Column() {
-//           Text(text = "hello movy app")
-//
-//           LazyColumn {
-//               items(items = movieList){
-//                  // Text(text = it)
-//                   MovieRow(movie = it){
-//                       Log.d("Test", "MainContent:onclickItem :click..$it ")
-//                   }
-//               }
-//           }
-//       }
-//
+//fun MovieRow(movie: Movie, onItemClick:(String)->Unit={} ) {
+//    Card(
+//        modifier = Modifier
+//            .padding(5.dp)
+//            .fillMaxWidth()
+//            .height(120.dp)
+//            .clickable { onItemClick(movie.id) },
+//     //  color = Color.Gray,
+//        shape = RoundedCornerShape(corner = CornerSize(16.dp)),
+//        elevation = (+10).dp,
+//        contentColor =Color.Green,
+//        backgroundColor = Color.Gray
+//    ) {
+//        Row(verticalAlignment = Alignment.CenterVertically,
+//        horizontalArrangement = Arrangement.Start,
+//        ) {
+//Surface(modifier = Modifier
+//    .padding(6.dp)
+//    .size(100.dp),
+//shape = RoundedCornerShape(corner = CornerSize(6.dp)),
+//elevation = 4.dp) {
+//Icon(imageVector = Icons.Default.AccountBox,
+//    contentDescription ="movie image " ,
+//    modifier = Modifier.background(color = Color.LightGray ))
+//}
+//            Text(text = movie.title)
+//        }
 //    }
-//
 //}
 
-@Composable
-fun MovieRow(movie: String,onItemClick:(String)->Unit={} ) {
-    Card(
-        modifier = Modifier
-            .padding(5.dp)
-            .fillMaxWidth()
-            .height(120.dp)
-            .clickable { onItemClick(movie) },
-     //  color = Color.Gray,
-        shape = RoundedCornerShape(corner = CornerSize(16.dp)),
-        elevation = (+10).dp,
-        contentColor =Color.Green,
-        backgroundColor = Color.Gray
-    ) {
-        Row(verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Start,
-        ) {
-Surface(modifier = Modifier
-    .padding(6.dp)
-    .size(100.dp),
-shape = RoundedCornerShape(corner = CornerSize(6.dp)),
-elevation = 4.dp) {
-Icon(imageVector = Icons.Default.AccountBox,
-    contentDescription ="movie image " ,
-    modifier = Modifier.background(color = Color.LightGray ))
-}
-            Text(text = movie)
-        }
-    }
-}
-
+@ExperimentalAnimationApi
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
